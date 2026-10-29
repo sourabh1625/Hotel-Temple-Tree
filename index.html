@@ -1,0 +1,2082 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Hotel Temple Tree — Food Menu &amp; Online Ordering</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0A261E',
+              primary: '#123B2F',
+              light: '#1B4D3E',
+              accent: '#C5A880',
+              goldLight: '#E8DCC4',
+              goldDark: '#99794B',
+              cream: '#FBF9F5',
+              surface: '#FFFFFF',
+              border: '#E8E3D9',
+              muted: '#6E7A75',
+              veg: '#0E8A38',
+              nonVeg: '#B91C1C'
+            }
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    ::-webkit-scrollbar { height: 4px; width: 4px; }
+    ::-webkit-scrollbar-thumb { background: #C5A880; border-radius: 4px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #DFCA9B 0%, #C5A880 50%, #99794B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    html { scroll-behavior: smooth; }
+    @media print {
+      body * { visibility: hidden !important; }
+      #receipt-preview-section, #receipt-preview-section * { visibility: visible !important; }
+      #receipt-preview-section {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+        background: #ffffff !important;
+        border: 1px solid #d1d5db !important;
+        box-shadow: none !important;
+      }
+      .no-print { display: none !important; }
+      @page { margin: 1cm; size: auto; }
+    }
+  </style>
+</head>
+<body class="bg-[#F6F4EE] text-[#1E2B25] font-sans antialiased pb-32 selection:bg-brand-accent selection:text-brand-dark min-h-screen">
+<!-- TOP BRAND NAV BAR -->
+<header class="sticky top-0 z-40 bg-brand-dark/95 backdrop-blur-md border-b border-[#244237] text-white transition-all shadow-md">
+<div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-9 h-9 rounded-full border border-brand-accent/60 bg-gradient-to-br from-brand-primary to-brand-dark flex items-center justify-center shadow-inner cursor-pointer transition-transform duration-300 transform hover:scale-110" onclick="window.toggleHotelImageModal(true, 'crest')" title="Click to view Hotel Crest"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Sn8f9bug0VWr16w4sNW0tv7Jijh7hU46uH9gl8qGJEkoPqQ4A6o0rBnrlBCJKW2S9-NzOOpkPVP3fcAxMln1UccoOOQAQBRyUjkXrdIFdoAM-ksNjKpNZYgC9IGkEoGVlsfeJpl99rlEQ=s1360-w1360-h1020-rw" alt="Hotel Temple Tree Emblem" class="w-full h-full object-cover rounded-full"></div>
+<div>
+<h1 class="font-serif tracking-wider text-sm font-bold text-white uppercase flex items-center gap-1">
+          Temple Tree
+          <span class="text-[9px] font-sans font-semibold tracking-widest text-brand-accent border border-brand-accent/40 rounded px-1 py-0.2">HOTEL</span>
+</h1>
+<p class="text-[10px] text-brand-goldLight/70 tracking-tight font-medium">Fine Dining &amp; Room Delights</p>
+</div>
+</div>
+<div class="flex items-center space-x-2.5">
+<div class="hidden sm:flex flex-col items-end text-right">
+<span class="text-[9px] uppercase tracking-widest text-brand-accent font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Executive Office
+        </span>
+<span class="text-[11px] font-medium text-white tracking-tight">General Manager</span>
+</div>
+<div id="gm-avatar" class="relative cursor-pointer group" onclick="window.toggleGMModal(true)" title="Click to view General Manager Spotlight"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QUuluf7ldqwuwaJNOAwZZ_gj896R1iwOJGEfF5YeBCwmLkiibSYNXKF5YHFv8gBiEWR2KWXVK3ZfMsuSZwGNlLwXN7RvBWz2gtSs1xX2GyoRVmXQ5K9qqQuSd32VvSl5N-F3JR=s1360-w1360-h1020-rw" alt="General Manager" class="w-8 h-8 rounded-full object-cover border border-amber-400/40 shadow-sm group-hover:scale-105 transition-transform duration-200"><span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-brand-dark rounded-full" title="Available"></span></div>
+</div>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTAINER -->
+<main class="max-w-md mx-auto px-3.5 pt-3 space-y-5">
+<!-- 1. HEADER & HOTEL PHOTOGRAPH -->
+<section class="relative rounded-2xl overflow-hidden shadow-xl border border-brand-border bg-brand-dark text-white">
+<div class="relative h-56 w-full overflow-hidden cursor-pointer group" onclick="window.toggleHotelImageModal(true, 'courtyard')" title="Click to view Hotel Temple Tree Courtyard"><img alt="Hotel Temple Tree Courtyard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RPil4j9280dkgNA0CSJIM1yqqLeyShHz6o9gSIXgc0r_Ous_JXhqGUFm-Kjh8nfIx__bURHQzzOJUAes61SJdYuW281smGKCegHeDWerHVCnDfy_2PLGphkb9ww73fpw0prBX2NQ=s1360-w1360-h1020-rw"><div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent"></div><div class="absolute top-3 left-3 bg-brand-primary/80 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider text-brand-goldLight border border-brand-accent/20 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Pure Hospitality · View Courtyard</div></div>
+<div class="p-5 pt-2 text-center relative -mt-6">
+<div class="inline-flex items-center justify-center p-2 rounded-full bg-brand-dark border border-brand-accent/40 mb-2 shadow-lg">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="utensils-crossed" aria-hidden="true" class="lucide lucide-utensils-crossed w-5 h-5 text-brand-accent"><path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8"></path><path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7"></path><path d="m2.1 21.8 6.4-6.3"></path><path d="m19 5-7 7"></path></svg>
+</div>
+<h2 class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-white mb-1.5">
+        Welcome to <span class="gold-gradient-text">Hotel Temple Tree</span>
+</h2>
+<p class="text-xs text-brand-goldLight/80 font-normal max-w-xs mx-auto leading-relaxed">
+        Discover Delicious Food, Fresh Flavours, and Exceptional Service crafted by our master chefs.
+      </p>
+<div class="mt-4 pt-3 border-t border-[#1C4135] grid gap-2 text-center text-[11px] grid-cols-2">
+<div class="flex flex-col items-center">
+<span class="text-brand-accent font-bold">11:00 AM - 11:30 PM</span>
+<span class="text-gray-400 text-[10px]">Kitchen Open</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-brand-accent font-bold">25-35 Mins</span>
+<span class="text-gray-400 text-[10px]">Avg Preparation</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. ORDER TYPE SELECTION -->
+<section class="bg-white rounded-2xl p-4 shadow-sm border border-brand-border" id="order-type-section">
+<div class="flex items-center justify-between mb-3"><div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center shadow-xs">1</div>
+<div>
+<span class="text-[10px] uppercase tracking-wider font-bold text-brand-primary/70">Step 1 of 3</span>
+<h3 class="font-serif text-base font-bold text-brand-dark">Select Order Type</h3>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 rounded-full font-medium" id="order-badge-indicator">Room Service Selected</span>
+</div></div>
+<p class="text-xs text-gray-500 mb-3.5">Please choose your preferred dining mode to customize your experience:</p>
+<div class="grid grid-cols-3 gap-2.5" role="radiogroup">
+<!-- Takeaway Card -->
+<div class="service-card cursor-pointer rounded-xl p-3 text-center border-2 transition-all duration-200 border-brand-primary bg-emerald-50/50 shadow-md ring-2 ring-brand-accent/20 flex flex-col justify-between" id="service-card-takeaway" onclick="selectOrderType('takeaway')">
+<div class="w-10 h-10 mx-auto rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-2 transition">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shopping-bag" aria-hidden="true" class="lucide lucide-shopping-bag w-5 h-5"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+</div>
+<h4 class="font-bold text-xs text-brand-dark mb-1">Takeaway</h4>
+<p class="text-[10px] text-gray-500 leading-tight mb-2 flex-1">Pickup from hotel reception desk</p>
+<button class="w-full py-1 text-[11px] font-semibold rounded-md bg-brand-primary text-white" type="button">Selected</button>
+</div>
+<!-- Dining Service Card -->
+<div class="service-card cursor-pointer rounded-xl p-3 text-center border-2 border-gray-200 hover:border-brand-accent/50 bg-white transition-all duration-200 flex flex-col justify-between" id="service-card-dining" onclick="selectOrderType('dining')">
+<div class="w-10 h-10 mx-auto rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mb-2 transition">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="utensils" aria-hidden="true" class="lucide lucide-utensils w-5 h-5"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+</div>
+<h4 class="font-bold text-xs text-brand-dark mb-1">Dining</h4>
+<p class="text-[10px] text-gray-500 leading-tight mb-2 flex-1">Dine in at our luxury restaurant</p>
+<button class="w-full py-1 text-[11px] font-semibold rounded-md bg-gray-100 text-gray-700" type="button">Select</button>
+</div>
+<!-- Room Service Card -->
+<div class="service-card cursor-pointer rounded-xl p-3 text-center border-2 border-gray-200 hover:border-brand-accent/50 bg-white transition-all duration-200 flex flex-col justify-between" id="service-card-room" onclick="selectOrderType('room')">
+<div class="w-10 h-10 mx-auto rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mb-2 transition">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bell-ring" aria-hidden="true" class="lucide lucide-bell-ring w-5 h-5"><path d="M10.268 21a2 2 0 0 0 3.464 0"></path><path d="M22 8c0-2.3-.8-4.3-2-6"></path><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path><path d="M4 2C2.8 3.7 2 5.7 2 8"></path></svg>
+</div>
+<h4 class="font-bold text-xs text-brand-dark mb-1">Room Service</h4>
+<p class="text-[10px] text-gray-500 leading-tight mb-2 flex-1">Served directly to your room</p>
+<button class="w-full py-1 text-[11px] font-semibold rounded-md bg-gray-100 text-gray-700" type="button">Select</button>
+</div>
+</div>
+</section>
+<!-- 3. CUSTOMER DETAILS FORM -->
+<section class="bg-white rounded-2xl p-4 shadow-sm border border-brand-border" id="customer-details-section">
+<div class="flex items-center justify-between border-b border-gray-100 pb-2.5 mb-3">
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">2</div>
+<div>
+<h3 class="font-serif text-sm font-bold text-brand-dark" id="form-heading">Customer Details — Takeaway</h3>
+<p class="text-[10px] text-gray-500" id="form-subtext">Fill details to personalize your order and receipt</p>
+</div>
+</div>
+<span class="hidden text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-full flex items-center gap-1" id="saved-indicator">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" aria-hidden="true" class="lucide lucide-check w-3 h-3"><path d="M20 6 9 17l-5-5"></path></svg> Confirmed &amp; Saved
+      </span>
+</div>
+<!-- Validation Banner -->
+<div class="hidden mb-3 p-3 bg-amber-50 border border-amber-300 rounded-xl text-xs text-amber-900 flex items-start gap-2.5 shadow-sm" id="form-validation-banner">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="alert-circle" aria-hidden="true" class="lucide lucide-alert-circle w-4 h-4 text-amber-600 shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+<div class="flex-1">
+<div class="font-bold text-amber-950 flex items-center justify-between">
+<span class="">Incomplete Information</span>
+<button class="text-amber-700 hover:text-amber-900 text-xs font-semibold" onclick="dismissValidationBanner()" type="button">✕</button>
+</div>
+<p class="text-[11px] mt-0.5 text-amber-800 leading-tight" id="form-validation-banner-text">Please fill in the required fields.</p>
+</div>
+</div>
+<form class="space-y-3" id="customer-form" onsubmit="handleFormSubmit(event)">
+<!-- Name Field -->
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1" for="cust-name">
+          Customer Full Name <span class="text-rose-500">*</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user" aria-hidden="true" class="lucide lucide-user w-4 h-4"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+</div>
+<input class="w-full pl-9 pr-3 py-2 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary transition" id="cust-name" inputmode="text" pattern="^[A-Za-z ]+$" oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, ''); onFormFieldChange();" placeholder="e.g. Sourabh Gupta" type="text" value="">
+</div><span class="text-[10px] text-gray-400 mt-1 block">Alphabetic characters and spaces only</span>
+</div>
+<!-- Contact Field -->
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1" for="cust-phone">
+          Contact Number <span class="text-rose-500">*</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" aria-hidden="true" class="lucide lucide-phone w-4 h-4"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+</div>
+<span class="absolute inset-y-0 left-8 flex items-center text-xs font-medium text-gray-500">+91</span>
+<input class="w-full pl-16 pr-3 py-2 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary transition" id="cust-phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10); onFormFieldChange(); const pVal = this.value.trim(); const formattedP = pVal ? ('+91 ' + pVal) : '—'; const el1 = document.getElementById('pre-confirm-guest-phone'); if (el1) el1.innerText = formattedP; const el2 = document.getElementById('checkout-cust-phone'); if (el2) el2.innerText = formattedP;" placeholder="e.g. 8109684478" type="tel" value="" onchange="onFormFieldChange();">
+</div>
+<span class="text-[10px] text-gray-400">10-digit mobile number for order dispatch</span>
+</div>
+<!-- Table Field (Shown ONLY for Dining) -->
+<div class="hidden" id="field-table">
+<label class="block text-xs font-semibold text-gray-700 mb-1" for="cust-table">
+          Restaurant Table Number <span class="text-rose-500">*</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="utensils" aria-hidden="true" class="lucide lucide-utensils w-4 h-4"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+</div>
+<input class="w-full pl-9 pr-3 py-2 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary transition" id="cust-table" oninput="onFormFieldChange()" placeholder="e.g. Table 04 or T-12" type="text">
+</div>
+</div>
+<!-- Room Number Field (Shown ONLY for Room Service) -->
+<div class="hidden" id="field-room">
+<label class="block text-xs font-semibold text-gray-700 mb-1" for="cust-room">
+          Hotel Room Number <span class="text-rose-500">*</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="key" aria-hidden="true" class="lucide lucide-key w-4 h-4"><path d="m2 21 9.6-9.6"></path><path d="m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"></path><circle cx="15.5" cy="7.5" r="5.5"></circle></svg>
+</div>
+<input class="w-full pl-9 pr-3 py-2 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary transition" id="cust-room" maxlength="4" oninput="onFormFieldChange()" placeholder="e.g. 402 or 208" type="text">
+</div>
+</div>
+<!-- Address Field (Shown for Takeaway) -->
+<div id="field-address">
+<label class="block text-xs font-semibold text-gray-700 mb-1" for="cust-address">
+          Pickup Notes / Address <span class="text-gray-400 font-normal">(Optional for Takeaway)</span>
+</label>
+<div class="relative">
+<div class="absolute top-2.5 left-0 pl-3 flex items-start pointer-events-none text-gray-400">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" aria-hidden="true" class="lucide lucide-map-pin w-4 h-4"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+</div>
+<textarea class="w-full pl-9 pr-3 py-2 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary transition resize-none" id="cust-address" oninput="onFormFieldChange()" placeholder="e.g. Pickup at main reception lobby desk" rows="2"></textarea>
+</div>
+</div>
+<button class="w-full py-2.5 px-4 bg-gradient-to-r from-brand-primary to-brand-dark hover:from-brand-light hover:to-brand-primary text-white text-xs font-bold rounded-lg shadow-md transition flex items-center justify-center gap-2" type="submit">
+<span id="btn-save-text" class="">Confirm Details &amp; Continue to Menu</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-down" aria-hidden="true" class="lucide lucide-arrow-down w-3.5 h-3.5"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+</button>
+</form>
+</section>
+<!-- 4. FOOD MENU CATEGORIES & COMPREHENSIVE MENU -->
+<section class="space-y-3 relative" id="food-menu-section">
+<!-- Menu Locked Overlay -->
+<div class="absolute inset-0 bg-[#F6F4EE]/90 backdrop-blur-sm z-30 flex flex-col items-center justify-center text-center p-6 rounded-2xl border border-brand-accent/40 shadow-sm transition-all duration-300" id="menu-lock-overlay">
+<div class="w-12 h-12 rounded-full bg-brand-primary/10 border border-brand-accent/40 text-brand-primary flex items-center justify-center mb-3 shadow-inner">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="lock" aria-hidden="true" class="lucide lucide-lock w-6 h-6 text-brand-primary"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+</div>
+<h4 class="font-serif font-bold text-base text-brand-dark mb-1">Menu Locked</h4>
+<p class="text-xs text-gray-600 max-w-xs leading-relaxed">Please select your order type and complete your customer details above to access the menu.</p>
+<a class="mt-3 px-4 py-1.5 bg-brand-primary text-white text-xs font-semibold rounded-lg shadow-sm hover:bg-brand-dark transition" href="#customer-details-section">Complete Details Above</a>
+</div>
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-border">
+<div class="flex items-center justify-between mb-2">
+<div>
+<span class="text-[10px] uppercase tracking-wider font-bold text-brand-primary/70">Step 2 of 3</span>
+<h3 class="font-serif text-lg font-bold text-brand-dark">Culinary Menu</h3>
+</div>
+<span class="text-[11px] text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full" id="menu-items-count-badge">Dishes Ready</span>
+</div>
+<p class="text-xs text-gray-500 mb-3">Prepared freshly with premium ingredients by Hotel Temple Tree.</p>
+<!-- Search & Veg/Non-Veg Filter -->
+<div class="flex items-center gap-2">
+<div class="relative flex-1">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" aria-hidden="true" class="lucide lucide-search w-4 h-4 text-gray-400 absolute left-3 top-2.5"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+<input class="w-full pl-9 pr-3 py-1.5 text-xs bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary" disabled="" id="menu-search-input" oninput="filterFoodItems()" placeholder="Search dishes (e.g. Burger, Pizza, Dosa)..." type="text">
+</div>
+<div class="flex items-center space-x-1 bg-gray-100 p-0.5 rounded-lg text-[10px] font-semibold">
+<button class="px-2 py-1 rounded bg-white text-brand-dark shadow-xs font-bold" disabled="" id="diet-all" onclick="setDietaryFilter('all')" type="button">All</button>
+<button class="px-2 py-1 rounded text-emerald-700 hover:bg-white flex items-center gap-1" disabled="" id="diet-veg" onclick="setDietaryFilter('veg')" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Veg
+          </button>
+</div>
+</div>
+<!-- Categories Pills -->
+<div class="mt-3.5 pt-3 border-t border-gray-100">
+<div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+<span class="">Categories</span>
+<span class="text-[9px] text-brand-accent">Scroll horizontally →</span>
+</div>
+<div class="flex space-x-2 overflow-x-auto no-scrollbar pb-1 text-xs whitespace-nowrap scroll-smooth" id="category-bar">
+<button class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-white shadow-sm transition" disabled="" onclick="filterCategory('all')" type="button">All Dishes</button>
+<button class="cat-pill px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 hover:bg-emerald-50 text-gray-700 transition" disabled="" onclick="filterCategory('Burgers')" type="button">🍔 Burgers</button>
+<button class="cat-pill px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 hover:bg-emerald-50 text-gray-700 transition" disabled="" onclick="filterCategory('Beverages and Juices')" type="button">🥤 Beverages</button>
+<button class="cat-pill px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 hover:bg-emerald-50 text-gray-700 transition" disabled="" onclick="filterCategory('Pizza')" type="button">🍕 Pizza</button>
+<button class="cat-pill px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 hover:bg-emerald-50 text-gray-700 transition" disabled="" onclick="filterCategory('South Indian')" type="button">🥥 South Indian</button>
+<button class="cat-pill px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 hover:bg-emerald-50 text-gray-700 transition" disabled="" onclick="filterCategory('Rice and Biryani')" type="button">🍚 Rice &amp; Biryani</button>
+<button class="cat-pill px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 hover:bg-emerald-50 text-gray-700 transition" disabled="" onclick="filterCategory('Dal and Pulses')" type="button">🍲 Dal &amp; Pulses</button>
+<button class="cat-pill px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 hover:bg-emerald-50 text-gray-700 transition" disabled="" onclick="filterCategory('Chinese')" type="button">🥢 Chinese</button>
+</div>
+</div>
+</div>
+<!-- Food Items Grid -->
+<div class="space-y-3" id="food-items-container"><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Burgers</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Cheese Burger</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Double melted cheddar over a golden grilled potato &amp; corn patty in a brioche bun.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹129</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Cheese Burger" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('bg2', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Beverages and Juices</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Watermelon Juice</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Hydrating fresh watermelon extract lightly accented with mint and black salt.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹79</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Watermelon Juice" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('b5', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Burgers</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Veg Burger</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Crispy vegetable patty with fresh lettuce, sliced tomatoes, and creamy dressing.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹99</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Veg Burger" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('bg1', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Burgers</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Paneer Burger</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Thick marinated cottage cheese steak pan-seared with mint mayo and coleslaw.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹149</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Paneer Burger" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('bg3', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Pizza</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Margherita Pizza</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Classic Italian delight with San Marzano tomatoes, fresh basil, and mozzarella.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹199</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Margherita Pizza" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('p1', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Pizza</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Farmhouse Pizza</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Loaded with bell peppers, crisp onions, ripe tomatoes, mushrooms &amp; golden corn.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹299</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Farmhouse Pizza" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('p2', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Pizza</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Paneer Tikka Pizza</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Charcoal-grilled spiced cottage cheese cubes, red paprika &amp; tandoori herb sauce.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹279</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Paneer Tikka Pizza" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('p3', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">South Indian</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Plain Dosa</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Crispy golden rice crepe prepared on cast iron, served with coconut chutney &amp; sambar.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹99</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Plain Dosa" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('si1', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">South Indian</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Masala Dosa</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Signature thin roasted dosa folded with spiced mashed potato filling and ghee.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹129</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Masala Dosa" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('si2', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Rice and Biryani</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Veg Biryani</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Dum-cooked aromatic basmati layered with seasonal vegetables, saffron, and mint.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹199</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Veg Biryani" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('rb3', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Dal and Pulses</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Dal Makhani</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Traditional overnight simmered black lentils and kidney beans finished with butter &amp; cream.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹199</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Dal Makhani" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('dp3', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Beverages and Juices</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Temple Tree Special Tea</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Brewed with aromatic Assam tea leaves, freshly crushed cardamom, and whole milk.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹30</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Temple Tree Special Tea" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('b1', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Beverages and Juices</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Filter Coffee</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">Authentic South Indian chicory decoction frothed with rich hot milk.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹50</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Filter Coffee" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('b2', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div><div class="food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3">
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border border-brand-veg flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-veg"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Beverages and Juices</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">Fresh Orange Juice</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">100% pure cold-pressed Nagpur oranges without added sugar or preservatives.</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹99</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Fresh Orange Juice" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            
+              <button type="button" onclick="updateCartItem('b4', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Add
+              </button>
+            
+          </div>
+        </div>
+      </div></div>
+</section>
+<!-- 5. ADD TO CART & CART SUMMARY SECTION -->
+<section class="bg-white rounded-2xl p-4 shadow-sm border border-brand-border transition-all duration-300 relative overflow-hidden" id="cart-section">
+<!-- Cart Locked Overlay -->
+<div class="absolute inset-0 bg-[#F6F4EE]/90 backdrop-blur-sm z-30 flex flex-col items-center justify-center text-center p-6 rounded-2xl border border-brand-accent/40 shadow-sm transition-all duration-300" id="cart-lock-overlay">
+<div class="w-12 h-12 rounded-full bg-brand-primary/10 border border-brand-accent/40 text-brand-primary flex items-center justify-center mb-3 shadow-inner">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="lock" aria-hidden="true" class="lucide lucide-lock w-6 h-6 text-brand-primary"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+</div>
+<h4 class="font-serif font-bold text-base text-brand-dark mb-1">Cart Locked</h4>
+<p class="text-xs text-gray-600 max-w-xs leading-relaxed">Complete order type and customer details above to unlock your cart.</p>
+<a class="mt-3 px-4 py-1.5 bg-brand-primary text-white text-xs font-semibold rounded-lg shadow-sm hover:bg-brand-dark transition" href="#customer-details-section">Complete Details Above</a>
+</div>
+<div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-3">
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">3</div>
+<h3 class="font-serif text-base font-bold text-brand-dark">Cart Summary</h3>
+</div>
+<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200" id="cart-items-counter-badge">0 items selected</span>
+</div>
+<!-- Empty Cart Message -->
+<div class="text-center py-8" id="empty-cart-view">
+<div class="w-14 h-14 mx-auto mb-2 text-gray-300 flex items-center justify-center rounded-full bg-gray-50">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shopping-basket" aria-hidden="true" class="lucide lucide-shopping-basket w-7 h-7"><path d="m15 11-1 9"></path><path d="m19 11-4-7"></path><path d="M2 11h20"></path><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"></path><path d="M4.5 15.5h15"></path><path d="m5 11 4-7"></path><path d="m9 11 1 9"></path></svg>
+</div>
+<p class="text-sm font-semibold text-gray-700">Your basket is empty</p>
+<p class="text-xs text-gray-400 mt-1">Browse our menu and click “+ Add” to select items.</p>
+<a class="inline-block mt-3 px-4 py-1.5 text-xs font-bold text-brand-primary bg-emerald-50 rounded-lg hover:bg-emerald-100 transition" href="#food-menu-section">Browse Menu</a>
+</div>
+<!-- Active Cart Items List -->
+<div class="hidden space-y-2.5 divide-y divide-gray-100" id="cart-items-list"></div>
+<!-- Dynamic Price Breakdown (Strictly Item Subtotal & Grand Total, No Fake Charges) -->
+<div class="hidden mt-4 pt-3 border-t border-gray-100 space-y-1.5 text-xs text-gray-600" id="cart-pricing-table">
+<div class="flex justify-between">
+<span class="">Item Subtotal (<span id="cart-items-qty-count" class="">0</span> items)</span>
+<span class="font-semibold text-gray-800 font-mono" id="cart-subtotal-val">₹0</span>
+</div>
+<div class="flex justify-between text-sm font-bold text-brand-dark pt-2 border-t border-dashed border-gray-200">
+<span class="">Grand Total</span>
+<span class="text-base text-brand-primary font-mono font-bold" id="cart-grand-total-val">₹0</span>
+</div>
+</div>
+</section>
+<!-- 6. CHECKOUT AND VERIFICATION -->
+<section class="opacity-50 bg-gradient-to-b from-white to-brand-cream rounded-2xl p-4 shadow-sm border border-brand-accent/40 transition-all duration-300" id="checkout-section">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-serif text-base font-bold text-brand-dark flex items-center gap-1.5">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-check" aria-hidden="true" class="lucide lucide-shield-check w-4 h-4 text-brand-accent"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        Order Checkout Review
+      </h3>
+<span class="text-[10px] text-gray-400 font-mono" id="checkout-order-draft-id">READY-TO-DISPATCH</span>
+</div>
+<!-- Customer Summary Card -->
+<div class="bg-gray-50/90 rounded-xl p-3 border border-gray-200 mb-3 space-y-1.5 text-xs">
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-[11px]">Delivery Mode:</span>
+<span class="font-bold text-brand-primary uppercase text-[11px] bg-white px-2 py-0.5 rounded border border-brand-accent/30" id="checkout-service-type">Takeaway Pickup</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-[11px]">Customer:</span>
+<span class="font-semibold text-gray-800" id="checkout-cust-name">—</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-[11px]">Contact:</span>
+<span class="font-semibold text-gray-800 font-mono" id="checkout-cust-phone">—</span>
+</div>
+<div class="flex items-start justify-between" id="checkout-extra-row">
+<span class="text-gray-500 text-[11px]" id="checkout-extra-label">Pickup Notes:</span>
+<span class="font-medium text-gray-700 text-right max-w-[200px] text-[11px]" id="checkout-extra-val">—</span>
+</div>
+</div>
+<!-- Kitchen & WhatsApp Dispatch Notice -->
+<div class="p-2.5 rounded-lg bg-emerald-50/80 border border-emerald-200 text-[11px] text-emerald-900 mb-3 flex items-start gap-2" id="notification-info-box">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="send" aria-hidden="true" class="lucide lucide-send w-4 h-4 text-brand-primary shrink-0 mt-0.5"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+<div id="notification-info-text" class="">
+<span class="font-bold">WhatsApp Direct Dispatch:</span> Order is routed directly to Hotel Temple Tree (+91 8109684478) with full itemized breakdown and generated live digital receipt.
+      </div>
+</div>
+<!-- Primary Action: Place Order Button -->
+<button class="w-full py-3 px-4 bg-gradient-to-r from-brand-primary via-brand-light to-brand-primary text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-between group opacity-50 cursor-not-allowed" disabled="" id="place-order-btn" onclick="const pEl = document.getElementById('cust-phone'); const pVal = pEl ? pEl.value.trim() : ''; const formattedP = pVal ? ('+91 ' + pVal) : '—'; const chkP = document.getElementById('checkout-cust-phone'); if (chkP) chkP.innerText = formattedP; const preP = document.getElementById('pre-confirm-guest-phone'); if (preP) preP.innerText = formattedP; openPreOrderConfirmationModal();" type="button">
+<div class="text-left">
+<div class="text-[10px] uppercase tracking-wider text-brand-goldLight/80">Confirm &amp; Place Order</div>
+<div class="text-sm font-serif">Place Order Now</div>
+</div>
+<div class="flex items-center gap-1.5 bg-black/20 px-3 py-1.5 rounded-lg">
+<span class="text-sm font-bold font-mono" id="checkout-btn-price">₹0</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-4 h-4 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+</div>
+</button>
+</section>
+<!-- SUCCESS NOTIFICATION BANNER -->
+<div class="hidden bg-emerald-50 border-2 border-emerald-500/50 rounded-2xl p-4 shadow-md text-center transition-all duration-300" id="order-success-banner">
+<div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-2 shadow-inner">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" aria-hidden="true" class="lucide lucide-check-circle w-6 h-6"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+</div>
+<h3 class="font-serif font-bold text-base text-emerald-950">Order Dispatched to Hotel Temple Tree!</h3>
+<p class="text-xs text-emerald-800 mt-1 max-w-xs mx-auto" id="order-success-banner-desc">
+      Your order has been sent to WhatsApp (+91 8109684478) and kitchen dispatch. View or print your verified receipt below.
+    </p>
+</div>
+<!-- 7. DIGITAL RECEIPT PREVIEW (INLINE & PERSISTENT) -->
+<section class="bg-white rounded-2xl p-4 shadow-md border-2 border-brand-accent/50 relative overflow-hidden" id="receipt-preview-section">
+<div class="h-2 bg-gradient-to-r from-brand-dark via-brand-accent to-brand-primary -mt-4 -mx-4 mb-4"></div>
+<!-- RECEIPT PLACEHOLDER / LOCKED STATE -->
+<div class="py-10 px-4 text-center space-y-3" id="receipt-locked-card">
+<div class="w-14 h-14 mx-auto rounded-full bg-brand-cream border border-brand-accent/40 flex items-center justify-center text-brand-primary shadow-inner">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="lock" aria-hidden="true" class="lucide lucide-lock w-7 h-7 text-brand-muted"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+</div>
+<div>
+<h3 class="font-serif font-bold text-sm sm:text-base text-brand-dark">Receipt Unavailable</h3>
+<p class="text-xs text-gray-500 max-w-xs mx-auto mt-1 leading-relaxed">
+          Complete your details, add items to cart, and place your order to generate your verified digital receipt.
+        </p>
+</div>
+<div class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-brand-primary bg-brand-cream/80 border border-brand-accent/30 px-3 py-1 rounded-full">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" aria-hidden="true" class="lucide lucide-clock w-3.5 h-3.5 text-brand-accent"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg> Awaiting Order Confirmation
+      </div>
+</div>
+<!-- FULL VERIFIED RECEIPT BODY -->
+<div class="hidden" id="receipt-active-card">
+<div class="mb-3 p-2 bg-emerald-50 border border-emerald-300 rounded-lg flex items-center justify-between text-xs text-emerald-950 font-medium">
+<div class="flex items-center gap-1.5">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle-2" aria-hidden="true" class="lucide lucide-check-circle-2 w-4 h-4 text-emerald-700 shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg>
+<span class="">Verified Receipt: <strong class="font-mono font-bold text-emerald-800" id="receipt-meta-target">+91 8109684478</strong></span>
+</div>
+<span class="text-[9px] bg-emerald-200 text-emerald-900 uppercase font-bold tracking-wider px-1.5 py-0.5 rounded">Active</span>
+</div>
+<div class="flex items-start justify-between border-b border-dashed border-gray-300 pb-3 mb-3">
+<div>
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-brand-dark text-brand-accent flex items-center justify-center">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trees" aria-hidden="true" class="lucide lucide-trees w-3 h-3 text-brand-accent"><path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"></path><path d="M7 16v6"></path><path d="M13 19v3"></path><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"></path></svg>
+</div>
+<h3 class="font-serif font-bold text-sm tracking-wide text-brand-dark">HOTEL TEMPLE TREE</h3>
+</div>
+<p class="text-[10px] text-gray-500 mt-0.5">Temple Road, Near Royal Enclave · GSTIN: 27AABCT8892M1Z5</p>
+</div>
+<div class="text-right">
+<span class="inline-block px-2 py-0.5 bg-emerald-600 text-white text-[10px] font-bold rounded shadow-xs" id="receipt-status-badge">
+            CONFIRMED
+          </span>
+<p class="text-[10px] font-mono text-gray-500 mt-1 font-bold" id="receipt-id">#HTT-000000</p>
+</div>
+</div>
+<!-- RECEIPT META -->
+<div class="grid grid-cols-2 gap-2 text-[11px] mb-3 bg-gray-50 p-2.5 rounded-lg border border-gray-100" id="receipt-meta-container">
+<div>
+<span class="text-gray-400 block text-[10px]">Order Date &amp; Time</span>
+<span class="font-semibold text-gray-800 font-mono text-[10px]" id="receipt-datetime">--</span>
+</div>
+<div>
+<span class="text-gray-400 block text-[10px]">Order Type</span>
+<span class="font-bold text-brand-primary" id="receipt-type">Takeaway Pickup</span>
+</div>
+<div>
+<span class="text-gray-400 block text-[10px]">Guest Name</span>
+<span class="font-semibold text-gray-800" id="receipt-guest-name">Valued Guest</span>
+</div>
+<div>
+<span class="text-gray-400 block text-[10px]">Phone Number</span>
+<span class="font-semibold text-gray-800 font-mono" id="receipt-guest-phone">—</span>
+</div>
+<div class="col-span-2 pt-1 border-t border-gray-200" id="receipt-extra-info-container">
+<span class="text-gray-400 block text-[10px]" id="receipt-extra-label">Pickup Details:</span>
+<span class="font-medium text-gray-700" id="receipt-extra-val">Hotel Reception Desk</span>
+</div>
+</div>
+<!-- Itemized Table in Receipt -->
+<div class="mb-3">
+<div class="flex text-[10px] font-bold text-gray-400 uppercase border-b border-gray-200 pb-1 mb-1.5">
+<span class="flex-1">Item Description</span>
+<span class="w-10 text-center">Qty</span>
+<span class="w-14 text-right">Price</span>
+<span class="w-16 text-right">Total</span>
+</div>
+<div class="space-y-1 text-xs" id="receipt-items-rows"></div>
+</div>
+<!-- Receipt Totals -->
+<div class="border-t border-dashed border-gray-300 pt-2.5 space-y-1 text-xs text-gray-600">
+<div class="flex justify-between">
+<span class="">Subtotal</span>
+<span class="font-semibold font-mono" id="receipt-subtotal">₹0</span>
+</div>
+<div class="flex justify-between text-sm font-extrabold text-brand-dark pt-1.5 border-t border-gray-200">
+<span class="">Grand Total Payable</span>
+<span class="text-brand-primary text-base font-mono font-bold" id="receipt-grand-total">₹0</span>
+</div>
+</div>
+<!-- Live Receipt Link Bar -->
+<div class="mt-3 p-2 bg-brand-cream/80 border border-brand-accent/40 rounded-lg text-[10px] text-brand-dark flex items-center justify-between gap-2">
+<span class="truncate">Live Receipt: <a class="font-mono text-brand-primary font-bold underline" href="#" id="receipt-direct-link" target="_blank">https://hotel-temple-tree.order/receipt/...</a></span>
+<button class="px-2 py-0.5 bg-brand-primary text-white rounded text-[10px] font-semibold shrink-0 hover:bg-brand-dark" onclick="copyReceiptLink()" type="button">Copy</button>
+</div>
+<div class="text-center mt-4 pt-3 border-t border-gray-100 text-[11px] text-gray-500">
+<p class="font-serif italic font-medium text-brand-dark">“Thank you for dining with Hotel Temple Tree!”</p>
+<p class="text-[10px] text-gray-400 mt-0.5">For queries, WhatsApp us at +91 8109684478</p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-3.5 pt-3 border-t border-gray-200 grid grid-cols-2 gap-2 no-print">
+<button class="py-2 px-3 border border-gray-300 bg-gray-100 text-gray-400 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition opacity-40 cursor-not-allowed" disabled="" id="btn-print-receipt" onclick="triggerPrintReceipt()" type="button">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="printer" aria-hidden="true" class="lucide lucide-printer w-3.5 h-3.5"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"></path><rect x="6" y="14" width="12" height="8" rx="1"></rect></svg>
+<span class="">Print Receipt</span>
+</button>
+<button class="py-2 px-3 bg-brand-primary/40 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition shadow-sm opacity-40 cursor-not-allowed" disabled="" id="btn-download-pdf" onclick="triggerDownloadPDF()" type="button">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="download" aria-hidden="true" class="lucide lucide-download w-3.5 h-3.5"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg>
+<span class="">Download PDF</span>
+</button>
+</div>
+</section>
+<!-- FOOTER BRANDING -->
+<footer class="text-center py-6 text-gray-400 text-xs space-y-1">
+<div class="flex items-center justify-center gap-1.5 text-brand-primary font-serif font-bold">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trees" aria-hidden="true" class="lucide lucide-trees w-4 h-4 text-brand-accent"><path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"></path><path d="M7 16v6"></path><path d="M13 19v3"></path><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"></path></svg>
+<span class="">HOTEL TEMPLE TREE</span>
+</div>
+<p class="text-[10px]">Pure Ingredients · Authentic Flavours · 5-Star Hospitality</p>
+<p class="text-[9px] text-gray-400">© 2025 Hotel Temple Tree. WhatsApp Orders: +91 8109684478</p>
+</footer>
+</main>
+<!-- FLOATING / STICKY CART BAR -->
+<div class="fixed bottom-3 inset-x-3 max-w-md mx-auto z-40 transition-all duration-300 transform translate-y-0" id="sticky-cart-bar">
+<div class="bg-brand-dark/95 backdrop-blur-md text-white p-3 rounded-2xl shadow-2xl border border-brand-accent/40 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="relative">
+<div class="w-10 h-10 rounded-xl bg-brand-primary border border-brand-accent/50 flex items-center justify-center text-brand-accent">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shopping-bag" aria-hidden="true" class="lucide lucide-shopping-bag w-5 h-5"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+</div>
+<span class="absolute -top-1.5 -right-1.5 bg-amber-500 text-brand-dark text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-brand-dark" id="floating-cart-badge">0</span>
+</div>
+<div>
+<div class="text-[10px] text-brand-goldLight font-semibold uppercase tracking-wider">Your Order Total</div>
+<div class="text-base font-bold text-white flex items-center gap-1.5">
+<span class="font-mono" id="floating-cart-total">₹0</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<a class="bg-brand-primary hover:bg-brand-light text-brand-goldLight text-xs font-semibold px-3 py-2 rounded-xl border border-brand-accent/30 transition flex items-center gap-1" href="#cart-section">
+<span class="">View Cart</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-up" aria-hidden="true" class="lucide lucide-chevron-up w-3.5 h-3.5"><path d="m18 15-6-6-6 6"></path></svg>
+</a>
+<a class="bg-brand-accent hover:bg-brand-goldLight text-brand-dark text-xs font-bold px-3.5 py-2 rounded-xl transition shadow flex items-center gap-1" href="#checkout-section">
+<span class="">Checkout</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-3.5 h-3.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+</a>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div class="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-brand-dark text-white text-xs px-4 py-2.5 rounded-full shadow-2xl border border-brand-accent/50 flex items-center gap-2 pointer-events-none opacity-0 transition-opacity duration-300" id="toast">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle-2" aria-hidden="true" class="lucide lucide-check-circle-2 w-4 h-4 text-emerald-400"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg>
+<span id="toast-message" class="">Item updated</span>
+</div>
+<!-- VALIDATION ALERT MODAL -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300" id="validation-modal">
+<div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border-2 border-brand-accent/60 relative text-left">
+<div class="h-1.5 bg-gradient-to-r from-brand-dark via-brand-accent to-brand-primary -mt-5 -mx-5 mb-4 rounded-t-2xl"></div>
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-amber-50 border border-amber-300 flex items-center justify-center text-amber-600 shrink-0 shadow-inner">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="alert-triangle" aria-hidden="true" class="lucide lucide-alert-triangle w-5 h-5 text-amber-600"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+</div>
+<div class="flex-1">
+<h3 class="font-serif text-base font-bold text-brand-dark">Required Details Missing</h3>
+<p class="text-xs text-gray-600 mt-1 leading-relaxed">Please complete all required fields so we can process and dispatch your order accurately.</p>
+</div>
+</div>
+<div class="mt-3.5 p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-amber-900">
+<div class="font-bold text-[11px] uppercase tracking-wider text-amber-950 mb-1.5 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Missing Required Details:
+      </div>
+<ul class="space-y-1 text-[11px] font-medium" id="validation-missing-list"></ul>
+</div>
+<div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-end gap-2">
+<button class="w-full py-2.5 px-4 bg-gradient-to-r from-brand-primary to-brand-dark hover:from-brand-light hover:to-brand-primary text-white text-xs font-bold rounded-xl shadow-md transition text-center tracking-wide" onclick="closeValidationModal()" type="button">
+        OK / Complete Fields
+      </button>
+</div>
+</div>
+</div><div id="gm-portrait-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300" onclick="if(event.target === this) window.toggleGMModal(false)"><div class="bg-brand-dark border-2 border-brand-accent/60 rounded-2xl max-w-sm w-full p-6 text-center text-white relative shadow-2xl"><button type="button" onclick="window.toggleGMModal(false)" class="absolute top-3 right-3 text-brand-goldLight hover:text-white bg-white/10 rounded-full w-8 h-8 flex items-center justify-center text-base transition font-bold">✕</button><div class="w-64 h-64 mx-auto rounded-2xl p-1 border-2 border-brand-accent shadow-xl mb-4 overflow-hidden bg-brand-primary"><img src="https://lh3.googleusercontent.com/aida/AEtjO1VOTNE43MQ0_j3yCW8j9td068RFd1Y0uknE8HSZzeXkvI55JTXoeZ5qzvU8GCXschHxzQaA2vjgNhrim57FwH5MgIiTaKTJGjoWP4cemGNBxDBOJ1dbkPRfLFB1cdaLx1JyuiZZED_i_JDLj0iM-DG7thWVbkd-mOuCnQy9q7EMWuRKR8ouOFNMoq1it3QieVxwtMhaxu5cyhSWHLntXRhqV2lFYWGA0hqJghYZ328" alt="General Manager Portrait" class="w-full h-full object-cover rounded-xl transform transition-transform duration-300 hover:scale-105 cursor-pointer" onclick="window.toggleGMModal(false)"></div><h4 class="font-serif font-bold text-lg text-brand-goldLight">Executive Office</h4><p class="text-xs text-brand-accent font-semibold uppercase tracking-wider">General Manager</p><p class="text-xs text-gray-300 mt-2.5 leading-relaxed">“Welcome to Hotel Temple Tree. Our culinary team is dedicated to providing you with an exquisite dining and hospitality experience.”</p><div class="mt-4 pt-3 border-t border-[#1C4135] flex items-center justify-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span class="text-[11px] text-gray-300 font-medium">Available On Duty</span></div><button type="button" onclick="window.toggleGMModal(false)" class="mt-4 w-full py-2.5 bg-brand-primary hover:bg-brand-light text-brand-goldLight text-xs font-bold rounded-xl border border-brand-accent/40 transition">Close Spotlight</button></div></div><div id="hotel-image-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300" onclick="if(event.target === this) window.toggleHotelImageModal(false)"><div class="bg-brand-dark border-2 border-brand-accent/60 rounded-2xl max-w-sm w-full p-6 text-center text-white relative shadow-2xl"><button type="button" onclick="window.toggleHotelImageModal(false)" class="absolute top-3 right-3 text-brand-goldLight hover:text-white bg-white/10 rounded-full w-8 h-8 flex items-center justify-center text-base transition font-bold">✕</button><div id="hotel-modal-image-container" class="w-64 h-64 mx-auto rounded-2xl p-1 border-2 border-brand-accent shadow-xl mb-4 overflow-hidden bg-brand-primary flex items-center justify-center"><img id="hotel-modal-image" src="https://lh3.googleusercontent.com/aida/AEtjO1VQy0j5H6HBBEir0v1SK18HtxxVYoZB2c6rhv--T1LUnfVfpKQFj7jtby7fdOpRUDf3AiqepxUYmcodERnnL2rPGwD8_jmp9x1l4Qc1bNRh7AgoJYHnagjzyCbfz9KJxSVovrvXs4PL7enFgatn5Y2tlo2G-VVCxh74kZ9SP4OVlFa_VtReRIDiTtliKZty46Ie4x0ZCGMvMp0WdXxJX4ywlZrywc-h1ACKDBS9Dw" alt="Hotel Temple Tree" class="w-full h-full object-cover rounded-xl transform transition-transform duration-300 hover:scale-105 cursor-pointer" onclick="window.toggleHotelImageModal(false)"></div><h4 id="hotel-modal-title" class="font-serif font-bold text-lg text-brand-goldLight">Hotel Temple Tree</h4><p id="hotel-modal-subtitle" class="text-xs text-brand-accent font-semibold uppercase tracking-wider">Lush Courtyard &amp; Sacred Tree</p><p id="hotel-modal-desc" class="text-xs text-gray-300 mt-2.5 leading-relaxed">“A serene boutique heritage sanctuary embodying timeless hospitality and peace.”</p><div class="mt-4 pt-3 border-t border-[#1C4135] flex items-center justify-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span class="text-[11px] text-gray-300 font-medium">Open for Fine Dining &amp; Guests</span></div><button type="button" onclick="window.toggleHotelImageModal(false)" class="mt-4 w-full py-2.5 bg-brand-primary hover:bg-brand-light text-brand-goldLight text-xs font-bold rounded-xl border border-brand-accent/40 transition">Close View</button></div></div><script>window.toggleHotelImageModal = function(show, type) { const m = document.getElementById('hotel-image-modal'); if (!m) return; if (show) { const img = document.getElementById('hotel-modal-image'); const title = document.getElementById('hotel-modal-title'); const sub = document.getElementById('hotel-modal-subtitle'); const desc = document.getElementById('hotel-modal-desc'); if (type === 'crest') { if (img) img.src = 'https://lh3.googleusercontent.com/aida/AEtjO1VTH0GozwHTZ1vMAm8DMP4JUmKl4iPus9DrHS-NgxTmdHcUo1_5h-BbUUCzUBM-IA2DFu_BrX60Jtq6WWcOTpc6ZK3UnYkuODAoUQEna3gOauD13ckFxXFvW0-BBHA7JrBoqtI6Cimw35SOs2zufl3NFN7Mbi8SP4GnbrXUS34D8O8HIaz6jxz3_3U-vHwaV2Okg7Yf4H_5qv66FS8r_ZqRcl2zy_pL_r4pEcowQSc'; if (title) title.innerText = 'Hotel Temple Tree Emblem'; if (sub) sub.innerText = 'Sacred Heritage Crest'; if (desc) desc.innerText = 'Symbol of eternal grace, nourishment, and 5-star warm hospitality.'; } else { if (img) img.src = 'https://lh3.googleusercontent.com/aida/AEtjO1VQy0j5H6HBBEir0v1SK18HtxxVYoZB2c6rhv--T1LUnfVfpKQFj7jtby7fdOpRUDf3AiqepxUYmcodERnnL2rPGwD8_jmp9x1l4Qc1bNRh7AgoJYHnagjzyCbfz9KJxSVovrvXs4PL7enFgatn5Y2tlo2G-VVCxh74kZ9SP4OVlFa_VtReRIDiTtliKZty46Ie4x0ZCGMvMp0WdXxJX4ywlZrywc-h1ACKDBS9Dw'; if (title) title.innerText = 'Hotel Temple Tree'; if (sub) sub.innerText = 'Lush Courtyard & Sacred Tree'; if (desc) desc.innerText = 'A serene boutique heritage sanctuary embodying timeless hospitality and peace.'; } m.classList.remove('hidden'); } else { m.classList.add('hidden'); } };</script>
+<!-- DYNAMIC PRE-ORDER CONFIRMATION MODAL WITH WHATSAPP DISPATCH -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300" id="pre-order-confirm-modal"><div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border-2 border-brand-accent/60 relative text-left"><button type="button" onclick="document.getElementById('pre-order-confirm-modal').classList.add('hidden')" class="absolute top-3 right-3 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold transition z-10" aria-label="Close confirmation modal">✕</button>
+<div class="h-1.5 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-dark -mt-5 -mx-5 mb-4 rounded-t-2xl"></div>
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-300 flex items-center justify-center text-emerald-600 shrink-0 shadow-inner">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shopping-cart" aria-hidden="true" class="lucide lucide-shopping-cart w-6 h-6 text-brand-primary"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"></path><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"></path><circle cx="18" cy="20" r="2"></circle><circle cx="8" cy="20" r="2"></circle></svg>
+</div>
+<div class="flex-1">
+<h3 class="font-serif text-base font-bold text-brand-dark">Confirm Order &amp; WhatsApp</h3>
+<p class="text-xs text-gray-600 mt-1 leading-relaxed">Review your real-time order breakdown before dispatching to the kitchen and WhatsApp.</p>
+</div>
+</div>
+
+<!-- Customer Information Container based on dining type -->
+<div class="mt-3.5 p-3 rounded-xl bg-gray-50/90 border border-gray-200 text-xs text-brand-dark space-y-1.5">
+<div class="flex items-center justify-between pb-1.5 border-b border-gray-200">
+<span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Customer Details</span>
+<span class="text-brand-primary uppercase text-[10px] font-bold bg-white px-2 py-0.5 rounded border border-brand-accent/30" id="pre-confirm-order-type">Takeaway</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-[11px]">Customer Name:</span>
+<span class="font-semibold text-gray-800 text-[11px]" id="pre-confirm-guest-name">—</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-[11px]">Contact Number:</span>
+<span class="font-semibold text-gray-800 font-mono text-[11px]" id="pre-confirm-guest-phone">—</span>
+</div>
+<div class="flex items-center justify-between hidden" id="modal-table-row">
+<span class="text-gray-500 text-[11px]">Table Number:</span>
+<span class="font-bold text-brand-primary text-[11px]" id="modal-cust-table">—</span>
+</div>
+<div class="flex items-start justify-between hidden" id="modal-takeaway-row">
+<span class="text-gray-500 text-[11px]">Delivery Address:</span>
+<span class="font-medium text-gray-700 text-right max-w-[180px] text-[11px]" id="modal-cust-takeaway">—</span>
+</div>
+<div class="flex items-center justify-between hidden" id="modal-room-row">
+<span class="text-gray-500 text-[11px]">Hotel Room Number:</span>
+<span class="font-bold text-brand-primary font-mono text-[11px]" id="modal-cust-room">—</span>
+</div>
+</div>
+
+<!-- Real-time dynamic itemized list in confirmation popup -->
+<div class="mt-3 p-3 rounded-xl bg-brand-cream border border-brand-accent/30 text-xs text-brand-dark space-y-2">
+<div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 border-b border-brand-accent/20 pb-1 flex justify-between">
+<span class="">Food Order Summary</span>
+<span class="text-brand-accent font-semibold">Itemized</span>
+</div>
+<div class="max-h-36 overflow-y-auto space-y-1.5 pr-1 no-scrollbar" id="pre-confirm-items-list">
+<!-- Injected dynamically: Food Item Name, Qty, Unit Price, and Item Subtotal (Unit Price × Qty) -->
+</div>
+<div class="pt-2 border-t border-brand-accent/20 space-y-1 text-xs">
+<div class="flex items-center justify-between text-gray-600 text-[11px]">
+<span class="">Order Subtotal:</span>
+<span class="font-mono font-semibold text-gray-800" id="pre-confirm-subtotal">₹0</span>
+</div>
+<div class="flex items-center justify-between text-xs font-bold text-brand-dark pt-1 border-t border-dashed border-brand-accent/30">
+<span class="">Grand Total Payable:</span>
+<span class="font-mono text-brand-primary text-sm font-extrabold" id="pre-confirm-grand-total">₹0</span>
+</div>
+</div>
+</div>
+
+<div class="mt-3 text-[10px] text-gray-500 flex items-center gap-1.5 bg-emerald-50/70 p-2 rounded-lg border border-emerald-200">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-square" aria-hidden="true" class="lucide lucide-message-square w-3.5 h-3.5 text-emerald-600 shrink-0"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"></path></svg>
+<span class="">Order &amp; live receipt link will open in WhatsApp to <strong>+91 8109684478</strong>.</span>
+</div>
+
+<div class="mt-4 pt-3 border-t border-gray-100 flex flex-col gap-2">
+<button class="w-full py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md transition text-center flex items-center justify-center gap-1.5 active:scale-95" onclick="confirmAndPlaceOrderWithWhatsApp()" type="button">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-circle" aria-hidden="true" class="lucide lucide-message-circle w-4 h-4"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg> Yes, Place Order &amp; Send to WhatsApp
+</button>
+<button class="w-full py-2 px-3 border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl text-xs font-semibold transition text-center flex items-center justify-center gap-1" onclick="continueBrowsingMenu()" type="button">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> + Add More Items First
+</button>
+</div>
+</div>
+<script class="">
+// Strict validation helper matching requirement 3-digit room number, 10-digit phone
+window.validateCustomerDetails = function() {
+  const missing = [];
+  if (!state.customer.name || !state.customer.name.trim()) {
+    missing.push('Customer Full Name is required');
+  }
+  const phoneRegex = /^[0-9]{10}$/;
+  if (!state.customer.phone || !phoneRegex.test(state.customer.phone.trim())) {
+    missing.push('Valid 10-digit Contact Number is required');
+  }
+  if (state.orderType === 'room') {
+    const roomRegex = /^[0-9]{3}$/;
+    if (!state.customer.room || !roomRegex.test(state.customer.room.trim())) {
+      missing.push('Hotel Room Number must be exactly 3 numeric digits (e.g. 101, 204, 305)');
+    }
+  }
+  if (state.orderType === 'dining' && (!state.customer.table || !state.customer.table.trim())) {
+    missing.push('Restaurant Table Number is required for Dine-In');
+  }
+  if (state.orderType === 'takeaway' && (!state.customer.address || !state.customer.address.trim())) {
+    missing.push('Delivery Address / Pickup details required for Takeaway');
+  }
+  return missing;
+};
+
+window.syncConfirmationModalData = function() {
+  const typeBadge = document.getElementById('pre-confirm-order-type');
+  const guestName = document.getElementById('pre-confirm-guest-name');
+  const guestPhone = document.getElementById('pre-confirm-guest-phone');
+  const roomRow = document.getElementById('modal-room-row');
+  const tableRow = document.getElementById('modal-table-row');
+  const takeawayRow = document.getElementById('modal-takeaway-row');
+  const roomVal = document.getElementById('modal-cust-room');
+  const tableVal = document.getElementById('modal-cust-table');
+  const takeawayVal = document.getElementById('modal-cust-takeaway');
+  const subtotalEl = document.getElementById('pre-confirm-subtotal');
+  const grandTotalEl = document.getElementById('pre-confirm-grand-total');
+  const listEl = document.getElementById('pre-confirm-items-list');
+
+  if (guestName) guestName.innerText = state.customer.name || '—';
+  if (guestPhone) guestPhone.innerText = state.customer.phone ? ('+91 ' + state.customer.phone) : '—';
+
+  // 1. Dine-In -> Customer Name, Contact Number, Table Number
+  // 2. Takeaway -> Customer Name, Contact Number, Delivery Address
+  // 3. Room Service -> Customer Name, Contact Number, Hotel Room Number (3 digits)
+  if (state.orderType === 'dining') {
+    if (typeBadge) typeBadge.innerText = 'DINE-IN';
+    if (tableRow) tableRow.classList.remove('hidden');
+    if (roomRow) roomRow.classList.add('hidden');
+    if (takeawayRow) takeawayRow.classList.add('hidden');
+    if (tableVal) tableVal.innerText = state.customer.table ? state.customer.table : '—';
+  } else if (state.orderType === 'takeaway') {
+    if (typeBadge) typeBadge.innerText = 'TAKEAWAY';
+    if (takeawayRow) takeawayRow.classList.remove('hidden');
+    if (roomRow) roomRow.classList.add('hidden');
+    if (tableRow) tableRow.classList.add('hidden');
+    if (takeawayVal) takeawayVal.innerText = state.customer.address || '—';
+  } else if (state.orderType === 'room') {
+    if (typeBadge) typeBadge.innerText = 'ROOM SERVICE';
+    if (roomRow) roomRow.classList.remove('hidden');
+    if (tableRow) tableRow.classList.add('hidden');
+    if (takeawayRow) takeawayRow.classList.add('hidden');
+    if (roomVal) roomVal.innerText = state.customer.room || '—';
+  }
+
+  const { subtotal, grandTotal, itemsList } = calculateCurrentCart();
+  if (subtotalEl) subtotalEl.innerText = '₹' + subtotal;
+  if (grandTotalEl) grandTotalEl.innerText = '₹' + grandTotal;
+
+  if (listEl) {
+    listEl.innerHTML = '';
+    itemsList.forEach(item => {
+      const itemRow = document.createElement('div');
+      itemRow.className = 'py-1.5 border-b border-brand-accent/10 last:border-0 text-xs';
+      itemRow.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-1.5 truncate">
+            <span class="w-2 h-2 rounded-full ${item.isVeg ? 'bg-brand-veg' : 'bg-brand-nonVeg'} shrink-0"></span>
+            <span class="font-semibold text-brand-dark truncate">${item.name}</span>
+          </div>
+          <span class="font-mono font-bold text-brand-dark shrink-0">₹${item.total}</span>
+        </div>
+        <div class="flex items-center justify-between text-[10px] text-gray-500 pl-3.5 mt-0.5">
+          <span>Qty: <strong class="text-gray-700 font-mono">${item.qty}</strong> × Unit Price: <strong class="text-gray-700 font-mono">₹${item.price}</strong></span>
+          <span class="text-gray-400 font-mono">Subtotal: ₹${item.total}</span>
+        </div>
+      `;
+      listEl.appendChild(itemRow);
+    });
+  }
+};
+
+window.openPreOrderConfirmationModal = function() {
+  onFormFieldChange();
+  const missing = validateCustomerDetails();
+  if (missing.length > 0) {
+    showValidationModal(missing);
+    return;
+  }
+
+  const { totalItemsCount } = calculateCurrentCart();
+  if (totalItemsCount === 0) {
+    showToast('Please add items to your cart first.');
+    return;
+  }
+
+  window.syncConfirmationModalData();
+  const modal = document.getElementById('pre-order-confirm-modal');
+  if (modal) modal.classList.remove('hidden');
+  if (window.lucide) lucide.createIcons();
+};
+
+window.confirmAndPlaceOrderWithWhatsApp = function() {
+  const modal = document.getElementById('pre-order-confirm-modal');
+  if (modal) modal.classList.add('hidden');
+
+  const { totalItemsCount, subtotal, grandTotal, itemsList } = calculateCurrentCart();
+  if (totalItemsCount === 0) return;
+
+  state.orderId = 'HTT-' + Math.floor(100000 + Math.random() * 900000);
+  state.isOrderPlaced = true;
+
+  const now = new Date();
+  const timeString = now.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' +
+                     now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
+  const receiptIdEl = document.getElementById('receipt-id');
+  if (receiptIdEl) receiptIdEl.innerText = '#' + state.orderId;
+  const checkoutDraftEl = document.getElementById('checkout-order-draft-id');
+  if (checkoutDraftEl) checkoutDraftEl.innerText = state.orderId;
+  const receiptTimeEl = document.getElementById('receipt-datetime');
+  if (receiptTimeEl) receiptTimeEl.innerText = timeString;
+
+  const liveReceiptUrl = `${window.location.origin}${window.location.pathname}?receipt=${state.orderId}&total=${grandTotal}#receipt-preview-section`;
+  const receiptDirectLink = document.getElementById('receipt-direct-link');
+  if (receiptDirectLink) {
+    receiptDirectLink.href = liveReceiptUrl;
+    receiptDirectLink.innerText = `.../receipt?id=${state.orderId}&total=₹${grandTotal}`;
+  }
+
+  let serviceName = '';
+  let extraDetailWA = '';
+  if (state.orderType === 'dining') {
+    serviceName = 'Dine-In';
+    extraDetailWA = `*Table Number:* ${state.customer.table}\n`;
+  } else if (state.orderType === 'takeaway') {
+    serviceName = 'Takeaway';
+    extraDetailWA = `*Delivery Address:* ${state.customer.address}\n`;
+  } else if (state.orderType === 'room') {
+    serviceName = 'Room Service';
+    extraDetailWA = `*Hotel Room Number:* ${state.customer.room}\n`;
+  }
+
+  let waText = `*HOTEL TEMPLE TREE — NEW ORDER DISPATCH*\n`;
+  waText += `*Order ID:* #${state.orderId}\n`;
+  waText += `*Date & Time:* ${timeString}\n`;
+  waText += `*Dining Mode:* ${serviceName}\n`;
+  waText += `*Customer Name:* ${state.customer.name}\n`;
+  waText += `*Contact Number:* +91 ${state.customer.phone}\n`;
+  waText += extraDetailWA;
+  waText += `\n*FOOD ORDER SUMMARY:*\n`;
+  itemsList.forEach((it, idx) => {
+    waText += `${idx + 1}. ${it.name} | Qty: ${it.qty} × ₹${it.price} = ₹${it.total}\n`;
+  });
+  waText += `\n*Order Subtotal:* ₹${subtotal}\n`;
+  waText += `*Grand Total Payable:* ₹${grandTotal}\n`;
+  waText += `*Total Items:* ${totalItemsCount}\n`;
+  waText += `\n*Digital Receipt Link:* ${liveReceiptUrl}\n`;
+  waText += `\n_Please confirm preparation status. Thank you!_`;
+
+  const encodedText = encodeURIComponent(waText);
+  const waUrl = `https://wa.me/918109684478?text=${encodedText}`;
+
+  window.open(waUrl, '_blank');
+
+  updateCheckoutAndReceiptUI();
+  updateSequentialGatingStates();
+
+  const receiptSection = document.getElementById('receipt-preview-section');
+  if (receiptSection) receiptSection.scrollIntoView({ behavior: 'smooth' });
+
+  showToast(`Order #${state.orderId} dispatched to WhatsApp! Total: ₹${grandTotal}`);
+};
+</script></div>
+<!-- JAVASCRIPT ENGINE (FULLY DYNAMIC, NO HARDCODED AMOUNTS) -->
+<script>
+  // 1. Live State Object
+  const state = {
+    isDetailsConfirmed: false,
+    isOrderPlaced: false,
+    orderId: '',
+    orderType: 'takeaway',
+    customer: {
+      name: '',
+      phone: '',
+      room: '',
+      table: '',
+      address: ''
+    },
+    currentCategory: 'all',
+    searchQuery: '',
+    dietFilter: 'all',
+    cart: {} // Dynamic itemId -> quantity map
+  };
+
+  // 2. Comprehensive Dishes Dataset
+  const menuItems = [
+    {
+      id: 'bg2',
+      name: 'Cheese Burger',
+      category: 'Burgers',
+      price: 129,
+      isVeg: true,
+      desc: 'Double melted cheddar over a golden grilled potato & corn patty in a brioche bun.',
+      img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'b5',
+      name: 'Watermelon Juice',
+      category: 'Beverages and Juices',
+      price: 79,
+      isVeg: true,
+      desc: 'Hydrating fresh watermelon extract lightly accented with mint and black salt.',
+      img: 'https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'bg1',
+      name: 'Veg Burger',
+      category: 'Burgers',
+      price: 99,
+      isVeg: true,
+      desc: 'Crispy vegetable patty with fresh lettuce, sliced tomatoes, and creamy dressing.',
+      img: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'bg3',
+      name: 'Paneer Burger',
+      category: 'Burgers',
+      price: 149,
+      isVeg: true,
+      desc: 'Thick marinated cottage cheese steak pan-seared with mint mayo and coleslaw.',
+      img: 'https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'p1',
+      name: 'Margherita Pizza',
+      category: 'Pizza',
+      price: 199,
+      isVeg: true,
+      desc: 'Classic Italian delight with San Marzano tomatoes, fresh basil, and mozzarella.',
+      img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'p2',
+      name: 'Farmhouse Pizza',
+      category: 'Pizza',
+      price: 299,
+      isVeg: true,
+      desc: 'Loaded with bell peppers, crisp onions, ripe tomatoes, mushrooms & golden corn.',
+      img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'p3',
+      name: 'Paneer Tikka Pizza',
+      category: 'Pizza',
+      price: 279,
+      isVeg: true,
+      desc: 'Charcoal-grilled spiced cottage cheese cubes, red paprika & tandoori herb sauce.',
+      img: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'si1',
+      name: 'Plain Dosa',
+      category: 'South Indian',
+      price: 99,
+      isVeg: true,
+      desc: 'Crispy golden rice crepe prepared on cast iron, served with coconut chutney & sambar.',
+      img: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'si2',
+      name: 'Masala Dosa',
+      category: 'South Indian',
+      price: 129,
+      isVeg: true,
+      desc: 'Signature thin roasted dosa folded with spiced mashed potato filling and ghee.',
+      img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'rb3',
+      name: 'Veg Biryani',
+      category: 'Rice and Biryani',
+      price: 199,
+      isVeg: true,
+      desc: 'Dum-cooked aromatic basmati layered with seasonal vegetables, saffron, and mint.',
+      img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'dp3',
+      name: 'Dal Makhani',
+      category: 'Dal and Pulses',
+      price: 199,
+      isVeg: true,
+      desc: 'Traditional overnight simmered black lentils and kidney beans finished with butter & cream.',
+      img: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'b1',
+      name: 'Temple Tree Special Tea',
+      category: 'Beverages and Juices',
+      price: 30,
+      isVeg: true,
+      desc: 'Brewed with aromatic Assam tea leaves, freshly crushed cardamom, and whole milk.',
+      img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'b2',
+      name: 'Filter Coffee',
+      category: 'Beverages and Juices',
+      price: 50,
+      isVeg: true,
+      desc: 'Authentic South Indian chicory decoction frothed with rich hot milk.',
+      img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80'
+    },
+    {
+      id: 'b4',
+      name: 'Fresh Orange Juice',
+      category: 'Beverages and Juices',
+      price: 99,
+      isVeg: true,
+      desc: '100% pure cold-pressed Nagpur oranges without added sugar or preservatives.',
+      img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=400&q=80'
+    }
+  ];
+
+  // 3. Mathematical Dynamic Totals Calculator (No Hardcoding)
+  function calculateCurrentCart() {
+    let subtotal = 0;
+    let totalItemsCount = 0;
+    const itemsList = [];
+
+    for (const [id, qtyRaw] of Object.entries(state.cart)) {
+      const qty = parseInt(qtyRaw, 10) || 0;
+      if (qty <= 0) continue;
+      const item = menuItems.find(m => m.id === id);
+      if (!item) continue;
+
+      const itemTotal = item.price * qty;
+      subtotal += itemTotal;
+      totalItemsCount += qty;
+      itemsList.push({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        qty: qty,
+        total: itemTotal,
+        isVeg: item.isVeg,
+        category: item.category
+      });
+    }
+
+    const grandTotal = subtotal; // Pure dynamic calculated sum
+    return {
+      subtotal,
+      grandTotal,
+      totalItemsCount,
+      itemsList
+    };
+  }
+
+  // 4. Real-time Customer Input Listener
+  window.onFormFieldChange = function() {
+    const nameInput = document.getElementById('cust-name');
+    const phoneInput = document.getElementById('cust-phone');
+    const roomInput = document.getElementById('cust-room');
+    const tableInput = document.getElementById('cust-table');
+    const addressInput = document.getElementById('cust-address');
+
+    if (nameInput) state.customer.name = nameInput.value.trim();
+    if (phoneInput) state.customer.phone = phoneInput.value.trim();
+    if (roomInput) state.customer.room = roomInput.value.trim();
+    if (tableInput) state.customer.table = tableInput.value.trim();
+    if (addressInput) state.customer.address = addressInput.value.trim();
+
+    updateCheckoutAndReceiptUI();
+  };
+
+  // 5. Select Order Type Switcher
+  window.selectOrderType = function(type) {
+    state.orderType = type;
+    const cards = ['takeaway', 'dining', 'room'];
+    cards.forEach(c => {
+      const el = document.getElementById(`service-card-${c}`);
+      if (!el) return;
+      const btn = el.querySelector('button');
+      if (c === type) {
+        el.className = 'service-card cursor-pointer rounded-xl p-3 text-center border-2 transition-all duration-200 border-brand-primary bg-emerald-50/50 shadow-md ring-2 ring-brand-accent/20 flex flex-col justify-between';
+        if (btn) {
+          btn.className = 'w-full py-1 text-[11px] font-semibold rounded-md bg-brand-primary text-white';
+          btn.innerText = 'Selected';
+        }
+      } else {
+        el.className = 'service-card cursor-pointer rounded-xl p-3 text-center border-2 border-gray-200 hover:border-brand-accent/50 bg-white transition-all duration-200 flex flex-col justify-between';
+        if (btn) {
+          btn.className = 'w-full py-1 text-[11px] font-semibold rounded-md bg-gray-100 text-gray-700';
+          btn.innerText = 'Select';
+        }
+      }
+    });
+
+    const formHeading = document.getElementById('form-heading');
+    const badgeIndicator = document.getElementById('order-badge-indicator');
+    const fieldRoom = document.getElementById('field-room');
+    const fieldTable = document.getElementById('field-table');
+    const fieldAddress = document.getElementById('field-address');
+
+    if (type === 'takeaway') {
+      if (formHeading) formHeading.innerText = 'Customer Details — Takeaway';
+      if (badgeIndicator) {
+        badgeIndicator.innerText = 'Takeaway Selected';
+        badgeIndicator.className = 'text-xs bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-full font-medium';
+      }
+      if (fieldRoom) fieldRoom.classList.add('hidden');
+      if (fieldTable) fieldTable.classList.add('hidden');
+      if (fieldAddress) fieldAddress.classList.remove('hidden');
+    } else if (type === 'dining') {
+      if (formHeading) formHeading.innerText = 'Customer Details — Restaurant Dining';
+      if (badgeIndicator) {
+        badgeIndicator.innerText = 'Dining Selected';
+        badgeIndicator.className = 'text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 rounded-full font-medium';
+      }
+      if (fieldRoom) fieldRoom.classList.add('hidden');
+      if (fieldTable) fieldTable.classList.remove('hidden');
+      if (fieldAddress) fieldAddress.classList.add('hidden');
+    } else if (type === 'room') {
+      if (formHeading) formHeading.innerText = 'Customer Details — Room Service';
+      if (badgeIndicator) {
+        badgeIndicator.innerText = 'Room Service Selected';
+        badgeIndicator.className = 'text-xs bg-purple-50 text-purple-800 border border-purple-200 px-2.5 py-0.5 rounded-full font-medium';
+      }
+      if (fieldRoom) fieldRoom.classList.remove('hidden');
+      if (fieldTable) fieldTable.classList.add('hidden');
+      if (fieldAddress) fieldAddress.classList.add('hidden');
+    }
+
+    onFormFieldChange();
+    showToast(`Switched dining mode to ${type.toUpperCase()}`);
+  };
+
+  // 6. Validation and Form Submission
+  window.validateCustomerDetails = function() {
+    const missing = [];
+    if (!state.customer.name) {
+      missing.push('Customer Full Name is required');
+    }
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!state.customer.phone || !phoneRegex.test(state.customer.phone)) {
+      missing.push('Valid 10-digit Contact Number is required');
+    }
+    if (state.orderType === 'room' && !state.customer.room) {
+      missing.push('Hotel Room Number is required for Room Service');
+    }
+    if (state.orderType === 'dining' && !state.customer.table) {
+      missing.push('Restaurant Table Number is required for Dining');
+    }
+    return missing;
+  };
+
+  window.showValidationModal = function(missingList) {
+    const modal = document.getElementById('validation-modal');
+    const listEl = document.getElementById('validation-missing-list');
+    const banner = document.getElementById('form-validation-banner');
+    const bannerText = document.getElementById('form-validation-banner-text');
+
+    if (listEl) {
+      listEl.innerHTML = missingList.map(item => `<li class="flex items-center gap-1.5 text-rose-700 font-semibold">• ${item}</li>`).join('');
+    }
+    if (modal) modal.classList.remove('hidden');
+    if (banner) {
+      banner.classList.remove('hidden');
+      if (bannerText) {
+        bannerText.innerText = 'Required: ' + missingList.join(', ');
+      }
+    }
+    if (window.lucide) lucide.createIcons();
+  };
+
+  window.closeValidationModal = function() {
+    const modal = document.getElementById('validation-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+
+  window.dismissValidationBanner = function() {
+    const banner = document.getElementById('form-validation-banner');
+    if (banner) banner.classList.add('hidden');
+  };
+
+  window.handleFormSubmit = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    onFormFieldChange();
+    const missing = validateCustomerDetails();
+
+    if (missing.length > 0) {
+      showValidationModal(missing);
+      return false;
+    }
+
+    dismissValidationBanner();
+    state.isDetailsConfirmed = true;
+
+    // Unlock Menu & Cart
+    const menuOverlay = document.getElementById('menu-lock-overlay');
+    if (menuOverlay) menuOverlay.classList.add('hidden');
+    const cartOverlay = document.getElementById('cart-lock-overlay');
+    if (cartOverlay) cartOverlay.classList.add('hidden');
+
+    const searchInput = document.getElementById('menu-search-input');
+    if (searchInput) searchInput.removeAttribute('disabled');
+    const dietAll = document.getElementById('diet-all');
+    if (dietAll) dietAll.removeAttribute('disabled');
+    const dietVeg = document.getElementById('diet-veg');
+    if (dietVeg) dietVeg.removeAttribute('disabled');
+    const categoryButtons = document.querySelectorAll('#category-bar button');
+    categoryButtons.forEach(btn => btn.removeAttribute('disabled'));
+
+    const savedBadge = document.getElementById('saved-indicator');
+    if (savedBadge) savedBadge.classList.remove('hidden');
+    const btnText = document.getElementById('btn-save-text');
+    if (btnText) btnText.innerText = 'Details Saved (Update Anytime)';
+
+    updateSequentialGatingStates();
+    renderFoodItems();
+    renderCartSummary();
+    updateCheckoutAndReceiptUI();
+
+    showToast('Customer details saved! Menu unlocked.');
+    const menuSection = document.getElementById('food-menu-section');
+    if (menuSection) menuSection.scrollIntoView({ behavior: 'smooth' });
+    return false;
+  };
+
+  // 7. Render Culinary Menu Items
+  function renderFoodItems() {
+    const container = document.getElementById('food-items-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const filtered = menuItems.filter(item => {
+      const matchesCategory = state.currentCategory === 'all' || item.category.toLowerCase().includes(state.currentCategory.toLowerCase());
+      const matchesSearch = item.name.toLowerCase().includes(state.searchQuery.toLowerCase()) || 
+                            item.desc.toLowerCase().includes(state.searchQuery.toLowerCase());
+      const matchesDiet = state.dietFilter === 'all' || (state.dietFilter === 'veg' && item.isVeg);
+      return matchesCategory && matchesSearch && matchesDiet;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-8 bg-white rounded-2xl border border-dashed border-gray-300 p-6">
+          <i data-lucide="search-x" class="w-8 h-8 text-gray-400 mx-auto mb-2"></i>
+          <p class="text-xs font-semibold text-gray-600">No dishes matched your filter</p>
+          <button type="button" onclick="filterCategory('all'); setDietaryFilter('all')" class="mt-2 text-xs text-brand-primary font-bold underline">Reset Filters</button>
+        </div>
+      `;
+      if (window.lucide) lucide.createIcons();
+      return;
+    }
+
+    filtered.forEach(item => {
+      const qty = state.cart[item.id] || 0;
+      const card = document.createElement('div');
+      card.className = 'food-card bg-white rounded-2xl p-3 border border-brand-border shadow-xs hover:shadow-md transition flex items-center justify-between gap-3';
+      card.innerHTML = `
+        <div class="flex-1 pr-1">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="w-3.5 h-3.5 border ${item.isVeg ? 'border-brand-veg' : 'border-brand-nonVeg'} flex items-center justify-center p-0.5 rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full ${item.isVeg ? 'bg-brand-veg' : 'bg-brand-nonVeg'}"></span>
+            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">${item.category}</span>
+          </div>
+          <h4 class="font-bold text-sm text-brand-dark leading-tight">${item.name}</h4>
+          <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">${item.desc}</p>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-sm font-extrabold text-brand-primary font-mono">₹${item.price}</span>
+            <span class="text-[10px] text-gray-400">inclusive of taxes</span>
+          </div>
+        </div>
+        <div class="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 shadow-inner group">
+          <img src="${item.img}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute bottom-1.5 inset-x-1.5">
+            ${qty > 0 ? `
+              <div class="flex items-center justify-between bg-brand-dark text-white rounded-lg px-1.5 py-1 shadow-lg border border-brand-accent/40">
+                <button type="button" onclick="updateCartItem('${item.id}', -1)" aria-label="Decrease quantity" class="w-5 h-5 flex items-center justify-center rounded text-brand-accent hover:bg-white/10 active:scale-90 transition font-bold text-sm">">−</button>
+                <span class="text-xs font-bold text-white font-mono">${qty}</span>
+                <button type="button" onclick="updateCartItem('${item.id}', 1)" aria-label="Increase quantity" class="w-5 h-5 flex items-center justify-center rounded text-brand-accent hover:bg-white/10 active:scale-90 transition font-bold text-sm">+</button>
+              </div>
+            ` : `
+              <button type="button" onclick="updateCartItem('${item.id}', 1)" class="w-full py-1 bg-white hover:bg-brand-primary hover:text-white text-brand-primary text-xs font-bold rounded-lg shadow-md border border-brand-primary/30 transition flex items-center justify-center gap-1 active:scale-95">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    if (window.lucide) lucide.createIcons();
+  }
+
+  // 8. Filters
+  window.filterCategory = function(cat) {
+    state.currentCategory = cat;
+    const pills = document.querySelectorAll('.cat-pill');
+    pills.forEach(pill => {
+      if ((cat === 'all' && pill.innerText.includes('All Dishes')) || pill.innerText.toLowerCase().includes(cat.toLowerCase())) {
+        pill.className = 'cat-pill active px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-white shadow-sm transition';
+      } else {
+        pill.className = 'cat-pill px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 hover:bg-emerald-50 text-gray-700 transition';
+      }
+    });
+    renderFoodItems();
+  };
+
+  window.filterFoodItems = function() {
+    const searchEl = document.getElementById('menu-search-input');
+    state.searchQuery = searchEl ? searchEl.value : '';
+    renderFoodItems();
+  };
+
+  window.setDietaryFilter = function(type) {
+    state.dietFilter = type;
+    const allBtn = document.getElementById('diet-all');
+    const vegBtn = document.getElementById('diet-veg');
+    if (type === 'all') {
+      if (allBtn) allBtn.className = 'px-2 py-1 rounded bg-white text-brand-dark shadow-xs font-bold';
+      if (vegBtn) vegBtn.className = 'px-2 py-1 rounded text-emerald-700 hover:bg-white flex items-center gap-1';
+    } else {
+      if (vegBtn) vegBtn.className = 'px-2 py-1 rounded bg-white text-emerald-800 shadow-xs font-bold flex items-center gap-1';
+      if (allBtn) allBtn.className = 'px-2 py-1 rounded text-gray-700 hover:bg-white font-medium';
+    }
+    renderFoodItems();
+  };
+
+  // 9. Real-Time Cart Mutator
+  window.updateCartItem = function(itemId, delta) {
+    const current = parseInt(state.cart[itemId], 10) || 0;
+    const updated = current + delta;
+    if (updated <= 0) {
+      delete state.cart[itemId];
+    } else {
+      state.cart[itemId] = updated;
+    }
+
+    if (state.isOrderPlaced) {
+      state.isOrderPlaced = false;
+    }
+
+    renderFoodItems();
+    renderCartSummary();
+    updateCheckoutAndReceiptUI();
+    updateSequentialGatingStates();
+
+    const itemObj = menuItems.find(m => m.id === itemId);
+    if (itemObj) {
+      if (updated <= 0) {
+        showToast(`Removed ${itemObj.name}`);
+      } else {
+        showToast(`${itemObj.name} × ${updated}`);
+      }
+    }
+  };
+
+  // 10. Synchronize Cart Summary & Price Breakdown
+  function renderCartSummary() {
+    const { subtotal, grandTotal, totalItemsCount, itemsList } = calculateCurrentCart();
+
+    const listContainer = document.getElementById('cart-items-list');
+    const emptyView = document.getElementById('empty-cart-view');
+    const pricingTable = document.getElementById('cart-pricing-table');
+    const floatingBadge = document.getElementById('floating-cart-badge');
+    if (floatingBadge) floatingBadge.innerText = totalItemsCount;
+
+    const floatingTotal = document.getElementById('floating-cart-total');
+    if (floatingTotal) floatingTotal.innerText = `₹${grandTotal}`;
+
+    const checkoutBtnPrice = document.getElementById('checkout-btn-price');
+    if (checkoutBtnPrice) checkoutBtnPrice.innerText = `₹${grandTotal}`;
+
+    const cartCounterBadge = document.getElementById('cart-items-counter-badge');
+    if (cartCounterBadge) {
+      cartCounterBadge.innerText = `${totalItemsCount} item${totalItemsCount === 1 ? '' : 's'} selected`;
+      cartCounterBadge.className = totalItemsCount === 0 ? 
+        'text-xs font-medium px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200' :
+        'text-xs font-medium px-2.5 py-0.5 rounded-full bg-emerald-50 text-brand-primary border border-emerald-200';
+    }
+
+    const itemsQtyCountEl = document.getElementById('cart-items-qty-count');
+    if (itemsQtyCountEl) itemsQtyCountEl.innerText = totalItemsCount;
+
+    if (totalItemsCount === 0) {
+      if (listContainer) listContainer.classList.add('hidden');
+      if (pricingTable) pricingTable.classList.add('hidden');
+      if (emptyView) emptyView.classList.remove('hidden');
+      const subtotalVal = document.getElementById('cart-subtotal-val');
+      if (subtotalVal) subtotalVal.innerText = `₹0`;
+      const grandTotalVal = document.getElementById('cart-grand-total-val');
+      if (grandTotalVal) grandTotalVal.innerText = `₹0`;
+      return;
+    }
+
+    if (listContainer) listContainer.classList.remove('hidden');
+    if (pricingTable) pricingTable.classList.remove('hidden');
+    if (emptyView) emptyView.classList.add('hidden');
+
+    if (listContainer) {
+      listContainer.innerHTML = '';
+      itemsList.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'pt-2 flex items-center justify-between text-xs py-1.5';
+        row.innerHTML = `
+          <div class="flex items-center space-x-2 flex-1 pr-2">
+            <span class="w-2.5 h-2.5 border ${item.isVeg ? 'border-brand-veg' : 'border-brand-nonVeg'} flex items-center justify-center p-0.5 rounded-xs shrink-0">
+              <span class="w-1.5 h-1.5 rounded-full ${item.isVeg ? 'bg-brand-veg' : 'bg-brand-nonVeg'}"></span>
+            </span>
+            <div>
+              <div class="font-bold text-brand-dark leading-tight">${item.name}</div>
+              <div class="text-[10px] text-gray-400">₹${item.price} × ${item.qty} = <span class="font-semibold text-gray-700 font-mono">₹${item.total}</span></div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-1.5 bg-gray-100 rounded-lg p-0.5 shadow-xs border border-gray-200">
+            <button type="button" onclick="updateCartItem('${item.id}', -1)" aria-label="Decrease quantity" class="w-6 h-6 flex items-center justify-center rounded bg-white text-gray-700 hover:bg-gray-200 active:scale-95 shadow-xs font-bold text-sm cursor-pointer select-none transition">−</button>
+            <span class="w-5 text-center font-bold text-xs text-brand-dark select-none font-mono">${item.qty}</span>
+            <button type="button" onclick="updateCartItem('${item.id}', 1)" aria-label="Increase quantity" class="w-6 h-6 flex items-center justify-center rounded bg-white text-gray-700 hover:bg-gray-200 active:scale-95 shadow-xs font-bold text-sm cursor-pointer select-none transition">+</button>
+          </div>
+        `;
+        listContainer.appendChild(row);
+      });
+    }
+
+    const subtotalVal = document.getElementById('cart-subtotal-val');
+    if (subtotalVal) subtotalVal.innerText = `₹${subtotal}`;
+    const grandTotalVal = document.getElementById('cart-grand-total-val');
+    if (grandTotalVal) grandTotalVal.innerText = `₹${grandTotal}`;
+  }
+
+  // 11. Sync Checkout Review & Digital Receipt
+  function updateCheckoutAndReceiptUI() {
+    const { subtotal, grandTotal, itemsList } = calculateCurrentCart();
+    const serviceName = state.orderType === 'takeaway' ? 'Takeaway Pickup' : 
+                        state.orderType === 'dining' ? 'Restaurant Dining' : 'Room Service';
+
+    // Checkout Section
+    const chkService = document.getElementById('checkout-service-type');
+    if (chkService) chkService.innerText = serviceName;
+    const chkCust = document.getElementById('checkout-cust-name');
+    if (chkCust) chkCust.innerText = state.customer.name || '—';
+    const chkPhone = document.getElementById('checkout-cust-phone');
+    if (chkPhone) chkPhone.innerText = state.customer.phone ? `+91 ${state.customer.phone}` : '—';
+
+    const checkoutExtraRow = document.getElementById('checkout-extra-row');
+    const checkoutExtraLabel = document.getElementById('checkout-extra-label');
+    const checkoutExtraVal = document.getElementById('checkout-extra-val');
+
+    if (state.orderType === 'room') {
+      if (checkoutExtraRow) checkoutExtraRow.classList.remove('hidden');
+      if (checkoutExtraLabel) checkoutExtraLabel.innerText = 'Room Number:';
+      if (checkoutExtraVal) checkoutExtraVal.innerText = state.customer.room || '—';
+    } else if (state.orderType === 'dining') {
+      if (checkoutExtraRow) checkoutExtraRow.classList.remove('hidden');
+      if (checkoutExtraLabel) checkoutExtraLabel.innerText = 'Table Number:';
+      if (checkoutExtraVal) checkoutExtraVal.innerText = state.customer.table || '—';
+    } else if (state.orderType === 'takeaway') {
+      if (checkoutExtraRow) checkoutExtraRow.classList.remove('hidden');
+      if (checkoutExtraLabel) checkoutExtraLabel.innerText = 'Pickup Notes:';
+      if (checkoutExtraVal) checkoutExtraVal.innerText = state.customer.address || '—';
+    }
+
+    // Receipt Section
+    const rType = document.getElementById('receipt-type');
+    if (rType) rType.innerText = serviceName;
+    const rName = document.getElementById('receipt-guest-name');
+    if (rName) rName.innerText = state.customer.name || 'Valued Guest';
+    const rPhone = document.getElementById('receipt-guest-phone');
+    if (rPhone) rPhone.innerText = state.customer.phone ? `+91 ${state.customer.phone}` : '—';
+
+    const receiptExtraLabel = document.getElementById('receipt-extra-label');
+    const receiptExtraVal = document.getElementById('receipt-extra-val');
+
+    if (state.orderType === 'room') {
+      if (receiptExtraLabel) receiptExtraLabel.innerText = 'Delivering to:';
+      if (receiptExtraVal) receiptExtraVal.innerText = `Room #${state.customer.room || 'Unassigned'}`;
+    } else if (state.orderType === 'dining') {
+      if (receiptExtraLabel) receiptExtraLabel.innerText = 'Serving at:';
+      if (receiptExtraVal) receiptExtraVal.innerText = `Table: ${state.customer.table || 'Dine-In'}`;
+    } else if (state.orderType === 'takeaway') {
+      if (receiptExtraLabel) receiptExtraLabel.innerText = 'Pickup Details:';
+      if (receiptExtraVal) receiptExtraVal.innerText = state.customer.address || 'Hotel Reception Desk';
+    }
+
+    const receiptItemsContainer = document.getElementById('receipt-items-rows');
+    if (receiptItemsContainer) {
+      receiptItemsContainer.innerHTML = '';
+      itemsList.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between text-[11px] py-1 border-b border-gray-100 last:border-0';
+        row.innerHTML = `
+          <span class="flex-1 text-gray-800 font-medium">${item.name}</span>
+          <span class="w-10 text-center font-mono text-gray-600">${item.qty}</span>
+          <span class="w-14 text-right text-gray-600 font-mono">₹${item.price}</span>
+          <span class="w-16 text-right font-bold text-gray-800 font-mono">₹${item.total}</span>
+        `;
+        receiptItemsContainer.appendChild(row);
+      });
+    }
+
+    const rSub = document.getElementById('receipt-subtotal');
+    if (rSub) rSub.innerText = `₹${subtotal}`;
+    const rGrand = document.getElementById('receipt-grand-total');
+    if (rGrand) rGrand.innerText = `₹${grandTotal}`;
+  }
+
+  // 12. Gating and Status Updates
+  function updateSequentialGatingStates() {
+    const { totalItemsCount } = calculateCurrentCart();
+    const checkoutSection = document.getElementById('checkout-section');
+    const placeOrderBtn = document.getElementById('place-order-btn');
+
+    if (totalItemsCount > 0 && state.isDetailsConfirmed) {
+      if (checkoutSection) checkoutSection.classList.remove('opacity-50');
+      if (placeOrderBtn) {
+        placeOrderBtn.disabled = false;
+        placeOrderBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        placeOrderBtn.classList.add('cursor-pointer', 'hover:opacity-95');
+      }
+    } else {
+      if (checkoutSection) checkoutSection.classList.add('opacity-50');
+      if (placeOrderBtn) {
+        placeOrderBtn.disabled = true;
+        placeOrderBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        placeOrderBtn.classList.remove('cursor-pointer', 'hover:opacity-95');
+      }
+    }
+
+    const receiptLockedCard = document.getElementById('receipt-locked-card');
+    const receiptActiveCard = document.getElementById('receipt-active-card');
+    const btnPrint = document.getElementById('btn-print-receipt');
+    const btnDownload = document.getElementById('btn-download-pdf');
+    const successBanner = document.getElementById('order-success-banner');
+
+    if (!state.isOrderPlaced) {
+      if (receiptLockedCard) receiptLockedCard.classList.remove('hidden');
+      if (receiptActiveCard) receiptActiveCard.classList.add('hidden');
+      if (successBanner) successBanner.classList.add('hidden');
+      if (btnPrint) {
+        btnPrint.disabled = true;
+        btnPrint.className = 'py-2 px-3 border border-gray-300 bg-gray-100 text-gray-400 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition opacity-40 cursor-not-allowed';
+      }
+      if (btnDownload) {
+        btnDownload.disabled = true;
+        btnDownload.className = 'py-2 px-3 bg-brand-primary/40 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition shadow-sm opacity-40 cursor-not-allowed';
+      }
+    } else {
+      if (receiptLockedCard) receiptLockedCard.classList.add('hidden');
+      if (receiptActiveCard) receiptActiveCard.classList.remove('hidden');
+      if (successBanner) successBanner.classList.remove('hidden');
+      if (btnPrint) {
+        btnPrint.disabled = false;
+        btnPrint.className = 'py-2 px-3 border border-gray-300 hover:bg-gray-50 rounded-lg text-xs font-semibold text-gray-700 flex items-center justify-center gap-1.5 transition cursor-pointer shadow-xs';
+      }
+      if (btnDownload) {
+        btnDownload.disabled = false;
+        btnDownload.className = 'py-2 px-3 bg-brand-primary hover:bg-brand-dark text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition shadow-sm cursor-pointer';
+      }
+    }
+  }
+
+  // 13. Dynamic Confirmation Modal
+  window.openPreOrderConfirmationModal = function() {
+    onFormFieldChange();
+    const missing = validateCustomerDetails();
+    if (missing.length > 0) {
+      showValidationModal(missing);
+      return;
+    }
+
+    const { totalItemsCount, grandTotal, itemsList } = calculateCurrentCart();
+    if (totalItemsCount === 0) {
+      showToast('Please add items to your cart first.');
+      return;
+    }
+
+    const modal = document.getElementById('pre-order-confirm-modal');
+    const guestEl = document.getElementById('pre-confirm-guest-name');
+    const typeEl = document.getElementById('pre-confirm-order-type');
+    const grandTotalEl = document.getElementById('pre-confirm-grand-total');
+    const listEl = document.getElementById('pre-confirm-items-list');
+
+    if (guestEl) guestEl.innerText = `Guest: ${state.customer.name}`;
+    if (typeEl) typeEl.innerText = state.orderType.toUpperCase();
+    if (grandTotalEl) grandTotalEl.innerText = `₹${grandTotal}`;
+
+    if (listEl) {
+      listEl.innerHTML = '';
+      itemsList.forEach(item => {
+        const itemRow = document.createElement('div');
+        itemRow.className = 'flex items-center justify-between text-xs py-1 border-b border-brand-accent/10 last:border-0';
+        itemRow.innerHTML = `
+          <div class="flex items-center gap-1.5 truncate">
+            <span class="w-2 h-2 rounded-full ${item.isVeg ? 'bg-brand-veg' : 'bg-brand-nonVeg'} shrink-0"></span>
+            <span class="font-medium text-brand-dark truncate">${item.name}</span>
+            <span class="text-[10px] text-gray-500 font-mono">× ${item.qty}</span>
+          </div>
+          <span class="font-mono font-bold text-brand-dark shrink-0">₹${item.total}</span>
+        `;
+        listEl.appendChild(itemRow);
+      });
+    }
+
+    if (modal) modal.classList.remove('hidden');
+    if (window.lucide) lucide.createIcons();
+  };
+
+  window.continueBrowsingMenu = function() {
+    const modal = document.getElementById('pre-order-confirm-modal');
+    if (modal) modal.classList.add('hidden');
+    const menuSection = document.getElementById('food-menu-section');
+    if (menuSection) menuSection.scrollIntoView({ behavior: 'smooth' });
+    showToast('Add more dishes from the menu!');
+  };
+
+  // 14. Confirm Order and Dispatch to WhatsApp (+91 8109684478)
+  window.confirmAndPlaceOrderWithWhatsApp = function() {
+    const modal = document.getElementById('pre-order-confirm-modal');
+    if (modal) modal.classList.add('hidden');
+
+    const { totalItemsCount, grandTotal, itemsList } = calculateCurrentCart();
+    if (totalItemsCount === 0) return;
+
+    // Generate unique Order ID
+    state.orderId = 'HTT-' + Math.floor(100000 + Math.random() * 900000);
+    state.isOrderPlaced = true;
+
+    // Time string
+    const now = new Date();
+    const timeString = now.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' +
+                       now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
+    // Update receipt values
+    const receiptIdEl = document.getElementById('receipt-id');
+    if (receiptIdEl) receiptIdEl.innerText = '#' + state.orderId;
+    const checkoutDraftEl = document.getElementById('checkout-order-draft-id');
+    if (checkoutDraftEl) checkoutDraftEl.innerText = state.orderId;
+    const receiptTimeEl = document.getElementById('receipt-datetime');
+    if (receiptTimeEl) receiptTimeEl.innerText = timeString;
+
+    // Real accessible live receipt link with encoded parameters
+    const liveReceiptUrl = `${window.location.origin}${window.location.pathname}?receipt=${state.orderId}&total=${grandTotal}#receipt-preview-section`;
+    const receiptDirectLink = document.getElementById('receipt-direct-link');
+    if (receiptDirectLink) {
+      receiptDirectLink.href = liveReceiptUrl;
+      receiptDirectLink.innerText = `.../receipt?id=${state.orderId}&total=₹${grandTotal}`;
+    }
+
+    // Format WhatsApp Message to +91 8109684478
+    const serviceName = state.orderType === 'takeaway' ? 'Takeaway Pickup' : 
+                        state.orderType === 'dining' ? `Restaurant Dining (Table: ${state.customer.table || 'Dine-In'})` : 
+                        `Room Service (Room: ${state.customer.room || 'Room'})`;
+
+    let waText = `*HOTEL TEMPLE TREE — NEW ORDER DISPATCH*\n`;
+    waText += `*Order ID:* #${state.orderId}\n`;
+    waText += `*Date & Time:* ${timeString}\n`;
+    waText += `*Dining Mode:* ${serviceName}\n`;
+    waText += `*Customer:* ${state.customer.name}\n`;
+    waText += `*Contact:* +91 ${state.customer.phone}\n`;
+    if (state.orderType === 'takeaway' && state.customer.address) {
+      waText += `*Notes:* ${state.customer.address}\n`;
+    }
+    waText += `\n*ITEMIZED ORDER SUMMARY:*\n`;
+    itemsList.forEach((it, idx) => {
+      waText += `${idx + 1}. ${it.name} — Qty: ${it.qty} × ₹${it.price} = ₹${it.total}\n`;
+    });
+    waText += `\n*Total Items:* ${totalItemsCount}\n`;
+    waText += `*Grand Total Payable:* ₹${grandTotal}\n`;
+    waText += `\n*Digital Receipt Link:* ${liveReceiptUrl}\n`;
+    waText += `\n_Please confirm preparation status. Thank you!_`;
+
+    const encodedText = encodeURIComponent(waText);
+    const waUrl = `https://wa.me/918109684478?text=${encodedText}`;
+
+    // Open WhatsApp in a new tab
+    window.open(waUrl, '_blank');
+
+    updateCheckoutAndReceiptUI();
+    updateSequentialGatingStates();
+
+    // Scroll smoothly to receipt
+    const receiptSection = document.getElementById('receipt-preview-section');
+    if (receiptSection) receiptSection.scrollIntoView({ behavior: 'smooth' });
+
+    showToast(`Order #${state.orderId} dispatched to WhatsApp! Total: ₹${grandTotal}`);
+  };
+
+  // 15. Helper Utilities
+  window.copyReceiptLink = function() {
+    const liveReceiptUrl = `${window.location.origin}${window.location.pathname}?receipt=${state.orderId}&total=${calculateCurrentCart().grandTotal}#receipt-preview-section`;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(liveReceiptUrl).then(() => {
+        showToast('Receipt URL copied to clipboard!');
+      });
+    } else {
+      showToast('Receipt URL: ' + liveReceiptUrl);
+    }
+  };
+
+  window.triggerPrintReceipt = function() {
+    if (!state.isOrderPlaced) {
+      showToast('Please place order to print receipt.');
+      return;
+    }
+    window.print();
+  };
+
+  window.triggerDownloadPDF = function() {
+    if (!state.isOrderPlaced) {
+      showToast('Please place order to download PDF.');
+      return;
+    }
+    showToast('Opening print dialog to Save as PDF...');
+    window.print();
+  };
+
+  let toastTimeout;
+  window.showToast = function(msg) {
+    const toast = document.getElementById('toast');
+    const text = document.getElementById('toast-message');
+    if (!toast || !text) return;
+    text.innerText = msg;
+    toast.style.opacity = '1';
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      toast.style.opacity = '0';
+    }, 3000);
+  };
+
+  // 16. Initialize and Dynamic Verification Demo Test
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) lucide.createIcons();
+    renderFoodItems();
+    renderCartSummary();
+    updateCheckoutAndReceiptUI();
+    updateSequentialGatingStates();
+  });
+</script>
+
+
+<script class="">
+window.toggleGMModal = function(show) {
+  const m = document.getElementById('gm-portrait-modal');
+  if (m) {
+    if (show) m.classList.remove('hidden');
+    else m.classList.add('hidden');
+  }
+};
+</script></body></html>
